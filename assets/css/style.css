@@ -105,9 +105,8 @@ footer {
     clear: both;
 }
 
-@media (min-width: 980px) {
+@media screen and (max-width: 980px) {
    body {
-    background-color: #30c14f;
     background: #30c14f;
    }
     .container {
@@ -115,12 +114,20 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
    .container {
     width: 768px;
    }
    body {
-    background-color: #30c14f;
+    background: #30c14f;
+   }
+}
+
+@media screen and (max-width: 640px) {
+   .container {
+    width: 768px;
+   }
+   body {
     background: #30c14f;
    }
 }
