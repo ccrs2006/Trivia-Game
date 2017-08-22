@@ -1,7 +1,7 @@
 //GLOBAL VARIABLES
 var primaryScreen;
 var gameHTML;
-var counter = 25;
+var counter = 20;
 var questionArray = [
 "What is the world's longest river?",
 "Name of the world's largest ocean?",
@@ -86,7 +86,7 @@ function generateLoss() {
 	}
 
 function generateHTML() {
-	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>25</span></p><p class='text-center'>" + questionArray[questionCounter] + "</p><p class='first-answer answer'>A. " + answerArray[questionCounter][0] + "</p><p class='answer'>B. "+answerArray[questionCounter][1]+"</p><p class='answer'>C. "+answerArray[questionCounter][2]+"</p><p class='answer'>D. "+answerArray[questionCounter][3]+"</p>";
+	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>20</span></p><p class='text-center'>" + questionArray[questionCounter] + "</p><p class='first-answer answer'>A. " + answerArray[questionCounter][0] + "</p><p class='answer'>B. "+answerArray[questionCounter][1]+"</p><p class='answer'>C. "+answerArray[questionCounter][2]+"</p><p class='answer'>D. "+answerArray[questionCounter][3]+"</p>";
 	$(".main-area").html(gameHTML);
 }
 
@@ -94,7 +94,7 @@ function wait() {
 	if(questionCounter < 7) {
 		questionCounter++;
 		generateHTML();
-		counter = 25;
+		counter = 20;
 		timerWrapper();
 	}else {
 		finalScreen();
@@ -102,8 +102,8 @@ function wait() {
 }
 
 function timerWrapper() {
-	Clock = setInterval(twentyFiveSeconds, 1000);
-	function twentyFiveSeconds () {
+	Clock = setInterval(twentySeconds, 1000);
+	function twentySeconds () {
 		if(counter === 0) {
 			clearInterval(Clock);
 			generateLossDueToTimeout();
@@ -125,7 +125,7 @@ function resetGame(){
 	IfCorrect = 0;
 	IfNotCorrect = 0;
 	IfNotAnswered = 0;
-	counter = 25;
+	counter = 20;
 	generateHTML();
 	timerWrapper();
 }
