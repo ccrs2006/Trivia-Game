@@ -50,7 +50,7 @@ function generateLossDueToTimeout() {
 	IfNotAnswered++;
 	gameHTML = "$('.timer-p')" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswersArray[questionCounter] + "</p>";
 	$(".main-area").html(gameHTML);
-	$.get("http://api.giphy.com/v1/gifs/search?q=TIME&IS&OVER&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
+	$.get("https://api.giphy.com/v1/gifs/search?q=TIME&IS&OVER&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
     .done(function(data) {
       var img = $("<img src='" + data.data[Math.floor(Math.random() * data.data.length)].images.original.url + "'>")
       $(".main-area").append(img);
@@ -63,7 +63,7 @@ function generateWin() {
 	IfCorrect++;
 	gameHTML = "$('.timer-p')" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswersArray[questionCounter] + "</p>";	
 	$(".main-area").html(gameHTML);
-	$.get("http://api.giphy.com/v1/gifs/search?q=WIN&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
+	$.get("https://api.giphy.com/v1/gifs/search?q=WIN&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
     .done(function(data) {
       var img = $("<img src='" + data.data[Math.floor(Math.random() * data.data.length)].images.original.url + "'>")
       $(".main-area").append(img);
@@ -76,7 +76,7 @@ function generateLoss() {
 	IfNotCorrect++;
 	gameHTML = "$('.timer-p')" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswersArray[questionCounter] + "</p>";
 	$(".main-area").html(gameHTML);
-	$.get("http://api.giphy.com/v1/gifs/search?q=WRONG&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
+	$.get("https://api.giphy.com/v1/gifs/search?q=WRONG&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
     .done(function(data) {
     var img = $("<img src='" + data.data[Math.floor(Math.random() * data.data.length)].images.original.url + "'>")
     $(".main-area").append(img);
