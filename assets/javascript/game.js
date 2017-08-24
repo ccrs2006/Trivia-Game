@@ -41,14 +41,15 @@ var IfNotAnswered = 0;
 var clickSound = new Audio("assets/sounds/click.mp3");
 var timeOutSound = new Audio("assets/sounds/timeIsRunningOut.mp3");
 var winSound = new Audio("assets/sounds/yeah.mp3");
-var lossSound = new Audio ("assets/sounds/whatsWrongWithYou.mp3");
-
-
+var lossSound = [new Audio("assets/sounds/whatsWrongWithYou.mp3"),
+new Audio("assets/sounds/whatt.mp3"),
+"assets/sounds/wrong.mp3",
+];
 //MAIN FUNCTIONS
 
 function generateLossDueToTimeout() {
 	IfNotAnswered++;
-	gameHTML = "$('.timer-p')" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswersArray[questionCounter] + "</p>";
+	gameHTML = "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswersArray[questionCounter] + "</p>";
 	$(".main-area").html(gameHTML);
 	$.get("https://api.giphy.com/v1/gifs/search?q=TIME&IS&OVER&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
     .done(function(data) {
@@ -61,7 +62,7 @@ function generateLossDueToTimeout() {
 
 function generateWin() {
 	IfCorrect++;
-	gameHTML = "$('.timer-p')" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswersArray[questionCounter] + "</p>";	
+	gameHTML = "<p class='text-center'>Correct! The answer is: " + correctAnswersArray[questionCounter] + "</p>";	
 	$(".main-area").html(gameHTML);
 	$.get("https://api.giphy.com/v1/gifs/search?q=WIN&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
     .done(function(data) {
@@ -74,14 +75,14 @@ function generateWin() {
 
 function generateLoss() {
 	IfNotCorrect++;
-	gameHTML = "$('.timer-p')" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswersArray[questionCounter] + "</p>";
+	gameHTML = "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswersArray[questionCounter] + "</p>";
 	$(".main-area").html(gameHTML);
 	$.get("https://api.giphy.com/v1/gifs/search?q=WRONG&api_key=9afb8f5d4c4b492c9afe06afb0904326&limit=10")
     .done(function(data) {
     var img = $("<img src='" + data.data[Math.floor(Math.random() * data.data.length)].images.original.url + "'>")
     $(".main-area").append(img);
     });
-    lossSound.play();
+    lossSound[0].play();
 	setTimeout(wait, 5000);
 	}
 
@@ -116,7 +117,7 @@ function timerWrapper() {
 }
 
 function finalScreen() {
-	gameHTML = "$('.timer-p')" + counter + "</span></p>" + "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + IfCorrect + "</p>" + "<p class='wrong-answers'>Wrong Answers: " + IfNotCorrect + "</p>" + "<p class='unanswered-answers'>Unanswered: " + IfNotAnswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-success btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
+	gameHTML = $('.timer-p') + counter + "</span></p>" + "<p class='text-center'>All done, here's how you did!" + "</p>" + "<p class='summary-correct'>Correct Answers: " + IfCorrect + "</p>" + "<p class='wrong-answers'>Wrong Answers: " + IfNotCorrect + "</p>" + "<p class='unanswered-answers'>Unanswered: " + IfNotAnswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-success btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>";
 	$(".main-area").html(gameHTML);
 }
 
